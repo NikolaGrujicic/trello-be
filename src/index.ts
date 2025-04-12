@@ -24,7 +24,7 @@ app.use((err: AppError, _req: Request, res: Response, _next: NextFunction) => {
 const initializeDatabase = async (retries = 3, delay = 1000): Promise<void> => {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      await sequelize.sync({ force: process.env.NODE_ENV !== "production" });
+      await sequelize.sync();
 
       const statusCount = await Status.count();
       if (statusCount === 0) {
@@ -46,7 +46,7 @@ const initializeDatabase = async (retries = 3, delay = 1000): Promise<void> => {
       console.error(`Database sync attempt ${attempt} failed:`, err);
       if (attempt === retries) {
         throw new Error(
-          `Failed to initialize database after ${retries} attempts`,
+          `Failed to initialize database after ${retries} attempts`
         );
       }
       await new Promise((resolve) => setTimeout(resolve, delay));
