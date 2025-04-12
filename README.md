@@ -29,22 +29,26 @@ A simple task management API built with TypeScript, Express, and Sequelize.
 
 **POST**
 ***localhost:3000/api/tasks***
+
+``
 {
     "title":"Test Task",
     "description":"Test Description",
     "statusId":1,
     "assignedUserId":1
 }
-
+``
 **GET**
 ***localhost:3000/api/tasks/1***
 
 **PUT**
 ***localhost:3000/api/tasks/1***
+
+``
 {
     "title":"Updated kkk",
     "statusId":2
 }
-
+``
 **DELETE**
 ***localhost:3000/api/tasks/1***
